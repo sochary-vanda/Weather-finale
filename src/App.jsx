@@ -76,6 +76,36 @@ useEffect(() => {
     .catch((error) => console.error(error));
 }, []);
 
+{/**aefa */}
+const handleSearch = () => {
+  if (location.trim() === "") return;
+
+  // Fetch current weather
+  axios.get(getUrl(location))
+    .then((response) => {
+      setData(response.data);
+      console.log("Search data loaded:", response.data);
+    })
+    .catch((error) => {
+      console.error("Search failed:", error);
+      setData({});
+    });
+
+  // Fetch forecast
+  axios.get(getForecastUrl(location))
+    .then((response) => {
+      const dailyForecasts = response.data.list.filter(item =>
+        item.dt_txt.includes("12:00:00")
+      );
+      setForecast(dailyForecasts);
+      console.log("Forecast data loaded:", dailyForecasts);
+    })
+    .catch((error) => console.error("Forecast fetch failed:", error));
+
+  setLocation("");
+};
+
+
 
   return (
 
@@ -97,7 +127,7 @@ useEffect(() => {
             className="bg-transparent flex-1 outline-none placeholder-white text-white"
             onKeyDown={searchLocation}
           />
-          <FaSearch className="opacity-80" />
+          <FaSearch className="opacity-80" onClick={handleSearch} />
         </div>
 
         {/* Weather Info */}
