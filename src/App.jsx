@@ -95,10 +95,10 @@ export default function App() {
   
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[url('/assets/image.png')]">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-amber-900">
       <div className="flex gap-x-8 flex-col md:flex-row border-none p-6 md:p-15   w-full max-w-6xl">
         {/* Center div */}
-        <div className="  rounded-4xl p-6 text-white shadow-xl flex-1 border-none">
+        <div className="  rounded-4xl p-6 text-white shadow-xl flex-1 border-none bg-amber-900">
           {/* Search bar */}
           <div className="flex items-center bg-white/30 rounded-3xl px-3 py-2">
             <input
