@@ -119,7 +119,8 @@ export default function App() {
         {/* Forecast */}
         <div className="flex flex-col md:w-50 w-full mb-6 md:mb-0 md:mr-6 items-start">
           <div className="font-serif font-bold text-xl m-4">Forecast</div>
-          <div className="grid grid-rows-4 md:grid-rows-4 grid-cols-4 md:grid-cols-1 gap-3 w-full">
+          <div className="grid grid-rows-4 md:grid-rows-4 grid-cols-4 md:grid-cols-1 gap-3 w-full bg-amber-900 shadow-xl flex-1 border-none 
+          rounded-4xl p-6">
             {forecast.map((item, index) => (
               <ForecastCard
                 key={index}

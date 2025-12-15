@@ -2,7 +2,7 @@ import { FaCloudSun } from "react-icons/fa";
 
 const ForecastCard = ({ day, temp, icon }) => {
   return (
-    <div className="flex  items-center justify-center  p-2 gap-x-4  py-3 flex-wrap bg-white/30 backdrop-blur-md border border-white/40 rounded-3xl shadow-xl">
+    <div className="flex  items-center justify-center  p-2 gap-x-4  py-3 flex-wrap bg-white/30 backdrop-blur-md border border-white/40 rounded-3xl shadow-xl bg-amber-900">
         <div>
              <p>{day}</p>
              <p>{temp}</p>
