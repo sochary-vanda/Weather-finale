@@ -12,25 +12,24 @@ export default function App() {
 
   const API_KEY = "ebbecde0aa81b8da203d4b97d30b5036";
 
-  // URL generator helper to include units=metric
+   
   const getUrl = (lat, lon) =>
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
-  // URL for the forecast API
+  
   const getForecastUrl = (lat, lon) =>
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
-  // Fetch weather based on the user's geolocation
+   
   useEffect(() => {
-    // Check if geolocation is supported by the browser
+   
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
           setGeolocationData({ lat, lon });
-
-          // Fetch current weather for the geolocation
+ 
           axios
             .get(getUrl(lat, lon))
             .then((response) => {
@@ -40,12 +39,11 @@ export default function App() {
             .catch((error) => {
               console.error("Failed to load weather data for geolocation:", error);
             });
-
-          // Fetch forecast for the geolocation
+ 
           axios
             .get(getForecastUrl(lat, lon))
             .then((response) => {
-              // Pick one forecast per day (12:00 PM)
+               
               const dailyForecasts = response.data.list.filter((item) =>
                 item.dt_txt.includes("12:00:00")
               );
@@ -61,13 +59,11 @@ export default function App() {
     } else {
       alert("Geolocation is not supported by this browser.");
     }
-  }, []); // Empty dependency array means this runs once when the component mounts
-
-  // Search location handler
+  }, []); 
   const handleSearch = () => {
     if (location.trim() === "") return;
 
-    // Fetch current weather based on the location input
+     
     axios
       .get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`)
       .then((response) => {
@@ -79,7 +75,7 @@ export default function App() {
         setData({});
       });
 
-    // Fetch forecast data based on the location input
+ 
     axios
       .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`)
       .then((response) => {
@@ -91,14 +87,14 @@ export default function App() {
       })
       .catch((error) => console.error("Forecast fetch failed:", error));
 
-    setLocation(""); // Reset location input field
+    setLocation(""); 
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-amber-800">
-      <div className="flex gap-x-8 flex-col md:flex-row border-none p-6 md:p-15 bg-white/10 backdrop-blur-lg rounded-4xl text-white shadow-lg w-full max-w-6xl">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[url('src/assets/image.png')]">
+      <div className="flex gap-x-8 flex-col md:flex-row border-none p-6 md:p-15   w-full max-w-6xl">
         {/* Center div */}
-        <div className="bg-white/20 backdrop-blur-lg rounded-4xl p-6 text-white shadow-xl flex-1 border-none">
+        <div className="  rounded-4xl p-6 text-white shadow-xl flex-1 border-none">
           {/* Search bar */}
           <div className="flex items-center bg-white/30 rounded-3xl px-3 py-2">
             <input
@@ -106,7 +102,7 @@ export default function App() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Search city..."
-              className="bg-transparent flex-1 outline-none placeholder-white text-white"
+              className="bg-transparent flex-1 outline-none placeholder-white text-white "
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <FaSearch className="opacity-80" onClick={handleSearch} />

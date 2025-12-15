@@ -30,7 +30,7 @@ const Weather = ({ weatherData }) => {
          
          </div> 
         
-    <div className=" flex justify-between bg-white/30 rounded-3xl p-5 py-7 md:flex-row flex-col w-full max-w-[700px]">
+    <div className=" flex justify-between p-5 py-7 md:flex-row flex-col w-full max-w-[700px] bg-white/30 backdrop-blur-md border border-white/40 rounded-3xl shadow-xl">
          <div className=" text-white ">
                 <p className="flex ">Feel like: <p className="font-bold mx-2">{weatherData.main.feels_like.toFixed()}°C</p>   </p>
                 <p className="flex ">Humidity: <p className="font-bold mx-2">{weatherData.main.humidity.toFixed()} %</p> </p>
@@ -38,9 +38,9 @@ const Weather = ({ weatherData }) => {
 
                 
        </div>
-       <div className=" text-white mt-5  ">
-                <p>Sunset : {weatherData.sys.sunset.toFixed()}°C</p>
-                <p>Sunrise: {weatherData.sys.sunrise.toFixed()}°C</p>
+       <div className=" text-white mt-5  gap-y-1">
+                <p>Sunset : {weatherData.sys.sunset.toFixed()}</p>
+                <p>Sunrise: {weatherData.sys.sunrise.toFixed()}</p>
        </div>
     </div>
       
