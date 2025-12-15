@@ -8,6 +8,7 @@ export default function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
   const [forecast, setForecast] = useState([]);
+  const [geolocationData, setGeolocationData] = useState(null);
 
   const API_KEY = "ebbecde0aa81b8da203d4b97d30b5036";
 
@@ -27,6 +28,7 @@ export default function App() {
         (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
+          setGeolocationData({ lat, lon });
 
           // Fetch current weather for the geolocation
           axios
@@ -67,7 +69,7 @@ export default function App() {
 
     // Fetch current weather based on the location input
     axios
-      .get(getUrl(location, ""))
+      .get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`)
       .then((response) => {
         setData(response.data);
         console.log("Search data loaded:", response.data);
@@ -79,7 +81,7 @@ export default function App() {
 
     // Fetch forecast data based on the location input
     axios
-      .get(getForecastUrl(location, ""))
+      .get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`)
       .then((response) => {
         const dailyForecasts = response.data.list.filter((item) =>
           item.dt_txt.includes("12:00:00")
@@ -89,7 +91,7 @@ export default function App() {
       })
       .catch((error) => console.error("Forecast fetch failed:", error));
 
-    setLocation("");
+    setLocation(""); // Reset location input field
   };
 
   return (
